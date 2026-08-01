@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+</head>
+
+<body>
+    <time id="time" datetime="">
+
+    </time>
+
+
+    <input type="number" name="" id="num1" placeholder="enetr your  num1">
+    <input type="number" name="" id="num2" placeholder="enetr your  num2">
+    <input type="text" name="" id="operator" placeholder="enetr your  operator">
+    <button id="click">click</button>
+    <input type="text" id="result" placeholder="your result will be here">
+
+    <script>
+
+        const calculator = (num1, num2, operator) => {
+            switch (operator) {
+                case "+":
+                    return (num1 + num2);
+                    break;
+                case "-":
+                    return (num1 - num2);
+                    break;
+                case "/":
+                    return (num1 / num2);
+                    break;
+                case "%":
+                    return (num1 % num2);
+                    break;
+                case "**":
+                    return (num1 ** num2);
+                    break;
+                default:
+                    return ("please enter valid operator");
+            }
+        };
+
+        //  let num1 = num1.value;
+        //     let num2 = num2.value;
+        //     let operator = operator.value;
+        operator.addEventListener("input", () => {
+            // console.log("object");
+            result.value = calculator(Number(num1.value), Number(num2.value), operator.value);
+            
+            // result.value = calculator(Number(num1), Number(num2), operator)
+        });
+
+        // let timeTag = document.getElementById("time");
+        // setInterval(() => {
+        //     let date = new Date();
+        //     let time = date.toLocaleTimeString();
+        //     timeTag.innerText = time
+        // }, 1000)
+    </script>
+</body>
+
+</html>

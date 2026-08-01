@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <title>Ang India</title>
+    <style>
+        .dom-camera {
+            width: 200px;
+            height: 171px;
+            position: absolute;
+            top: 20;
+            left: 50%;
+            margin-left: -100px;
+            background-image: url("./assets/images/camera.png");
+            background-repeat: no-repeat;
+            background-position: -600px 0px;
+
+
+        }
+
+        .parent {
+            animation: 15s linear 5s infinite running scroll;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(110vh);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .dom-camera {
+                display: none;
+            }
+        }
+
+
+        .scroller {
+            animation: ticker 12s linear infinite;
+        }
+
+
+        @keyframes ticker {
+
+            /* Pause at start */
+            0%,
+            10% {
+                transform: translateX(150);
+            }
+
+            /* Move 200px */
+            20%,
+            30% {
+                transform: translateX(-200px);
+            }
+
+            /* Pause */
+            30%,
+            40% {
+                transform: translateX(-200px);
+            }
+
+            /* Move another 200px */
+            50%,
+            60% {
+                transform: translateX(-400px);
+            }
+
+            /* Pause */
+            60%,
+            70% {
+                transform: translateX(-400px);
+            }
+
+            /* Move another 200px */
+            80%,
+            90% {
+                transform: translateX(-600px);
+            }
+
+            /* End */
+            100% {
+                transform: translateX(-800px);
+            }
+        }
+
+
+
+
+        @keyframes slide-in {
+            0% {
+                transform: translateX(110vh);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="px-3 md:px-auto flex items-center justify-between md:justify-around py-3 bh-white shadow-md">
+        <nav class="hidden md:flex items-center justify-center gap-5">
+            <a href="" class="active:text-blue-500 focus:text-blue-500 text-blue-500">Home</a>
+            <a href="" class="hover:text-blue-500">About</a>
+            <a href="" class="hover:text-blue-500">Solutions</a>
+        </nav>
+
+        <div class="w-[200px] ">
+            <img src="./assets/images/main-logo.png" alt="" class="w-full h-full object-cover">
+        </div>
+        <nav class="hidden md:flex items-center justify-center gap-5">
+            <a href="" class="hover:text-blue-500">Why Ang</a>
+            <a href="" class="hover:text-blue-500">News & Events</a>
+            <a href="" class="hover:text-blue-500">Contact Us</a>
+        </nav>
+        <div class="block md:hidden text-2xl cursor-pointer"><i class="fa-solid fa-bars"></i></div>
+    </header>
+
+
+
+
+
+
+
+
+    <main class="flex flex-col text-white items-center justify-center pb-28 repeate-no w-full opacity-50 "
+        style="background-image: url(./assets/images/hero-bg.png); background-repeat: no-repeat; background-size: cover; opacity: 100;  ">
+        <div class="parent">
+            <div class="dom-camera ">
+
+            </div>
+        </div>
+        <h1 class="text-5xl my-5 pt-5 "><span class="font-bold">Anything</span> security. <span
+                class="font-bold">Everything</span> security.</h1>
+        <p class="text-2xl t">That’s us, India’s leading name in end-to-end security solutions & services.
+        </p>
+        <h1 class="animate__animated animate__bounce">An animated element</h1>
+
+    </main>
+    <div class="h-30 w-full bg-white "></div>
+    <!-- Start by knowing us better. -->
+    <section class="bg-blue-950 py-16  text-white ">
+        <h2 class="text-3xl  text-blue-600  text-center">Start by knowing us better.</h2>
+
+        <div
+            class="container px-5 mx-auto flex flex-col items-center justify-center  sm:grid sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-10 my-10">
+
+
+            <section class="group relative w-[300px] md:w-[350px] lg:w-[230px] xl:w-[250px] h-[350px] overflow-hidden">
+                <!-- Green Card -->
+                <div class="absolute inset-0 bg-green-700 rounded px-5 py-8
+        transition-all duration-700 ease-in-out
+        translate-x-[-250px] group-hover:translate-x-0">
+
+                    <h3 class="font-medium text-lg">Who We Are</h3>
+
+                    <div class="w-20 absolute bottom-5">
+                        <img src="./assets/images/who-we-are.png" alt="">
+                    </div>
+                </div>
+
+                <!-- Blue Card -->
+                <div class="absolute inset-0 bg-[#17a0df] rounded px-5 py-8
+        transition-all duration-700 ease-in-out
+        translate-x-0 group-hover:translate-x-full">
+
+                    <h3 class="font-medium text-lg">Who We Are</h3>
+
+                    <div class="w-20 absolute bottom-5">
+                        <img src="./assets/images/who-we-are.png" alt="">
+                    </div>
+                </div>
+
+            </section>
+            <section class="group relative w-[300px] md:w-[350px] lg:w-[230px] xl:w-[250px] h-[350px] overflow-hidden">
+                <!-- Green Card -->
+                <div class="absolute inset-0 bg-green-700 rounded px-5 py-8
+        transition-all duration-700 ease-in-out
+        translate-x-[-250px] group-hover:translate-x-0">
+
+                    <h3 class="font-medium text-lg">Who We Are</h3>
+
+                    <div class="w-20 absolute bottom-5">
+                        <img src="./assets/images/who-we-are.png" alt="">
+                    </div>
+                </div>
+
+                <!-- Blue Card -->
+                <div class="absolute inset-0 bg-[#17a0df] rounded px-5 py-8
+        transition-all duration-700 ease-in-out
+        translate-x-0 group-hover:translate-x-full">
+
+                    <h3 class="font-medium text-lg">Who We Are</h3>
+
+                    <div class="w-20 absolute bottom-5">
+                        <img src="./assets/images/who-we-are.png" alt="">
+                    </div>
+                </div>
+
+            </section>
+            <section class="group relative w-[300px] md:w-[350px] lg:w-[230px] xl:w-[250px] h-[350px] overflow-hidden">
+                <!-- Green Card -->
+                <div class="absolute inset-0 bg-green-700 rounded px-5 py-8
+        transition-all duration-700 ease-in-out
+        translate-x-[-250px] group-hover:translate-x-0">
+
+                    <h3 class="font-medium text-lg">Who We Are</h3>
+
+                    <div class="w-20 absolute bottom-5">
+                        <img src="./assets/images/who-we-are.png" alt="">
+                    </div>
+                </div>
+
+                <!-- Blue Card -->
+                <div class="absolute inset-0 bg-[#17a0df] rounded px-5 py-8
+        transition-all duration-700 ease-in-out
+        translate-x-0 group-hover:translate-x-full">
+
+                    <h3 class="font-medium text-lg">Who We Are</h3>
+
+                    <div class="w-20 absolute bottom-5">
+                        <img src="./assets/images/who-we-are.png" alt="">
+                    </div>
+                </div>
+
+            </section>
+            <section class="group relative w-[300px] md:w-[350px] lg:w-[230px] xl:w-[250px] h-[350px] overflow-hidden">
+                <!-- Green Card -->
+                <div class="absolute inset-0 bg-green-700 rounded px-5 py-8
+        transition-all duration-700 ease-in-out
+        translate-x-[-250px] group-hover:translate-x-0">
+
+                    <h3 class="font-medium text-lg">Who We Are</h3>
+
+                    <div class="w-20 absolute bottom-5">
+                        <img src="./assets/images/who-we-are.png" alt="">
+                    </div>
+                </div>
+
+                <!-- Blue Card -->
+                <div class="absolute inset-0 bg-[#17a0df] rounded px-5 py-8
+        transition-all duration-700 ease-in-out
+        translate-x-0 group-hover:translate-x-full">
+
+                    <h3 class="font-medium text-lg">Who We Are</h3>
+
+                    <div class="w-20 absolute bottom-5">
+                        <img src="./assets/images/who-we-are.png" alt="">
+                    </div>
+                </div>
+
+            </section>
+
+
+        </div>
+    </section>
+
+    <!-- Security for all... and beyond. ÷ -->
+    <section class="bg-fixed  bg-cover text-white   w-full mx-auto "
+        style="background-image: url(./assets/images/security-bg.png);">
+        <h2 class="text-3xl py-10  text-center">Security for all... and beyond.</h2>
+        <div class="flex items-center justify-center mx-auto">
+            <img src="./assets/images/security-man.png" alt="">
+        </div>
+        <section class="relative  pt-20  bg-[#03b9bf] text-white w-full h-[50vh]  ">
+            <h2 class="text-center  text-xl">SOLUTIONS & SERVICES</h2>
+            <p class="text-center text-3xl my-4">Customized. Holistic. Advanced. Value-driven.</p>
+            <div class="container  flex relative mx-auto overflow-x-scroll  w-1/2">
+                <div
+                    class="  flex items-center transition delay-50 duration-300 ease-in-out justify-center gap-20 scroller ">
+                    <img src="./assets/images/who-we-are.png" alt="" class="">
+                    <img src="./assets/images/who-we-are.png" alt="" class="">
+                    <img src="./assets/images/who-we-are.png" alt="" class="">
+                </div>
+                <div
+                    class="  flex items-center transition delay-150 duration-300   ease-in-out justify-center gap-20 scroller ">
+                    <img src="./assets/images/main-logo.png" alt="" class="">
+                    <img src="./assets/images/main-logo.png" alt="" class="">
+                    <img src="./assets/images/main-logo.png" alt="" class="">
+                </div>
+            </div>
+
+            <div class="absolute w-full -bottom-12 flex items-center justify-center gap-5">
+                <div class="bg-white py-5 px-13 text-black text-center">
+                    <h3 class="text-3xl ">25 YEARS</h3>
+
+                    <span class=" my-2 text-gray-600">of experience</span>
+                </div>
+
+                <div class="bg-white py-5 px-13 text-black text-center">
+                    <h3 class="text-3xl ">25 YEARS</h3>
+
+                    <span class=" my-2 text-gray-600">of experience</span>
+                </div>
+                <div class="bg-white py-5 px-13 text-black text-center">
+                    <h3 class="text-3xl ">25 YEARS</h3>
+
+                    <span class=" my-2 text-gray-600">of experience</span>
+                </div>
+                <div class="bg-white py-5 px-13 text-black text-center">
+                    <h3 class="text-3xl ">25 YEARS</h3>
+
+                    <span class=" my-2 text-gray-600">of experience</span>
+                </div>
+            </div>
+        </section>
+
+    </section>
+
+    <section class="bg-fixed bg-cover h-screen " style="background-image: url(./assets/images/testimonial-bg.png);">
+    </section>
+
+
+
+
+
+</body>
+
+</html>
