@@ -241,13 +241,13 @@ const users = [
 
 // console.log(newProducts);
 
-const products = [
-  { id: 1, name: "Laptop", category: "Electronics", price: 1000 },
-  { id: 2, name: "T-Shirt", category: "Apparel", price: 25 },
-  { id: 3, name: "Headphones", category: "Electronics", price: 150 },
-  { id: 4, name: "Coffee Maker", category: "Home", price: 80 },
-  { id: 5, name: "Keyboard", category: "Electronics", price: 90 },
-];
+// const products = [
+//   { id: 1, name: "Laptop", category: "Electronics", price: 1000 },
+//   { id: 2, name: "T-Shirt", category: "Apparel", price: 25 },
+//   { id: 3, name: "Headphones", category: "Electronics", price: 150 },
+//   { id: 4, name: "Coffee Maker", category: "Home", price: 80 },
+//   { id: 5, name: "Keyboard", category: "Electronics", price: 90 },
+// ];
 
 // const newsProducts = products.map((product) => {
 // product.price= product.price * 0.9;
@@ -258,5 +258,41 @@ const products = [
 //   return acc + product.price;
 // }, 0);
 // console.log(total);
+
+// git init;
+// git add .;
+// git commit -m "message";
+// git hub url past here.
+// git push origin main ///master
+
+// now only update repositry
+// git add .
+// git commit -m "updated"
+// git push origin main ya master
+
+// const arr=[1,2,3,4,5,6];
+// console.log(arr);
+// const newArray=arr.slice(0,arr.length);
+// console.log(newArray);
+
+// const newArray = arr.splice(0, 0, 1, 2, 3, 4, 5);
+// console.log(newArray);
+// console.log(arr);
+
+// arr.forEach((e, i) => {
+//   if (i === 4) {
+//     console.log(arr[i] * 4);
+//   }
+//   console.log(e * 2);
+// });
+
+
+
+// for(let ele of arr){
+
+// }
+
+
+
 
 
