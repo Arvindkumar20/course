@@ -160,10 +160,10 @@
 // itemsPerPage=10
 // itemList=11 to 20
 
-const pagination = (items, users) => {
-  let start = 0;
-  let end = start + 9;
-  return users.slice(start, end);
+const pagination = (page, items, itemsPerPage = 10) => {
+  const start = page * itemsPerPage;
+  const end = start + itemsPerPage;
+  return items.slice(start, end);
 };
 
 console.log("start api calling...");
@@ -171,9 +171,15 @@ console.log("start api calling...");
 fetch("https://jsonplaceholder.typicode.com/posts")
   .then((response) => response.json())
   .then((json) => {
-    let itemList = pagination(0, json);
-    console.log(itemList);
-  })
-  .catch((err) => console.log(err.message));
-console.log("end api calling...");
+    const page = 1; // current page
+    const itemsPerPage = 10;
+    const itemList = pagination(page, json, itemsPerPage);
+    console.log(`Page ${page + 1}:`, itemList);
+    console.log(`Total items: ${json.length}`);
+    console.log(`Total pages: ${Math.ceil(json.length / itemsPerPage)}`);
+    
+  });
+
+//   .catch((err) => console.log(err.message))
+//   .finally(() => console.log("end api calling...")); // This will log after API completes
 // console.log(users);
