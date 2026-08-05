@@ -168,18 +168,107 @@ const pagination = (page, items, itemsPerPage = 10) => {
 
 console.log("start api calling...");
 
-fetch("https://jsonplaceholder.typicode.com/posts")
-  .then((response) => response.json())
-  .then((json) => {
-    const page = 1; // current page
-    const itemsPerPage = 10;
-    const itemList = pagination(page, json, itemsPerPage);
-    console.log(`Page ${page + 1}:`, itemList);
-    console.log(`Total items: ${json.length}`);
-    console.log(`Total pages: ${Math.ceil(json.length / itemsPerPage)}`);
-    
-  });
+// fetch("https://jsonplaceholder.typicode.com/posts")
+//   .then((response) => response.json())
+//   .then((json) => {
+//     const page = 1; // current page
+//     const itemsPerPage = 10;
+//     const itemList = pagination(page, json, itemsPerPage);
+//     console.log(`Page ${page + 1}:`, itemList);
+//     console.log(`Total items: ${json.length}`);
+//     console.log(`Total pages: ${Math.ceil(json.length / itemsPerPage)}`);
+//   });
 
 //   .catch((err) => console.log(err.message))
 //   .finally(() => console.log("end api calling...")); // This will log after API completes
 // console.log(users);
+// const promise = new Promise((resolve, reject) => {
+//   fetch("https://jsonplaceholder.typicode.com/posts")
+//     .then((response) => resolve(response))
+//     .catch((error) => reject(error));
+// });
+
+// promise
+//   .then((data) => data.json())
+//   .then((data) => console.log(data))
+//   .catch((err) => console.log(err));
+
+// const loadUsers = async () => {
+//   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+//   const result =await response.json();
+//   console.log(result);
+// };
+let errorMsg = "";
+const loadUsers = async () => {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await response.json();
+    if (result.length <= 0) {
+      throw new Error("users not found");
+    }
+    console.log(result);
+  } catch (error) {
+    errorMsg = error.message;
+    console.log(error);
+  } finally {
+    console.log("completed");
+  }
+};
+
+loadUsers();
+
+console.log(errorMsg);
+
+//get,post,patch,put,delete
+
+// document.getElementById('loginForm').addEventListener('submit', async function(e) {
+//     e.preventDefault();
+
+//     const account = document.getElementById('account').value;
+//     const password = document.getElementById('password').value;
+//     const errorMessage = document.getElementById('errorMessage');
+
+//     try {
+//         // Clear any previous error message
+//         errorMessage.textContent = '';
+
+//         const response = await fetch('http://chinamdvr.com:8088/StandardApiAction_login.action', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/x-www-form-urlencoded',
+//             },
+//             body: `account=${encodeURIComponent(account)}&password=${encodeURIComponent(password)}`
+//         });
+
+//         const data = await response.json();
+//         console.log('Login response:', data);
+
+//         if (data.result === 0 && data.jsession) {
+//             // Store the jsession
+//             localStorage.setItem('jsession', data.jsession);
+
+//             // Redirect to vehicle page
+//             window.location.href = 'vehicle.html';
+//         } else {
+//             errorMessage.style.display = 'block'; // Ensure visibility
+//             errorMessage.textContent = 'Login failed. Please check your credentials.';
+//         }
+//     } catch (error) {
+//         console.error('Login error:', error);
+//         errorMessage.style.display = 'block'; // Ensure visibility
+//         errorMessage.textContent = 'An error occurred during login. Please try again.';
+//     }
+// });
+
+// try {
+
+// } catch (error) {
+
+// }
+
+// throw new Error()
