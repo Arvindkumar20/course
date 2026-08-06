@@ -144,17 +144,13 @@
             // userCard.appendChild(name);
             // userCard.appendChild(email);
             // container.appendChild(userCard);
-
-
             container.innerHTML += `<div class="user-card"> 
                 <img src="${user.profile}" class="image-style"/>
                  <h2>${user.name}</h2> 
                  <h3>${user.email}</h3>
                  </div>
                  `
-
         });
-        
         container.classList = "container";
         main.appendChild(container);
     </script>
