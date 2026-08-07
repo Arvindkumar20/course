@@ -3,6 +3,8 @@ let name = document.getElementById("name");
 let passwordInput = document.getElementById("password");
 let nameError = document.getElementById("nameError");
 let passwordErrorElement = document.getElementById("passwordError");
+let showData = document.getElementById("showData");
+let useItem = document.getElementById("user-item");
 
 name.addEventListener("input", (e) => {
   nameError.innerText = "";
@@ -11,9 +13,11 @@ name.addEventListener("input", (e) => {
 
 passwordInput.addEventListener("input", (e) => {
   let passwordError = "";
+
   const value = e.target.value;
-  console.log(value);
+  // console.log(value);
   // Check for at least one lowercase letter
+
   if (!/[a-z]/.test(value)) {
     passwordError = "Password must contain at least one lowercase letter";
   }
@@ -109,13 +113,51 @@ const handleFormSubmissin = (e) => {
     return;
   }
 
-  console.log(name.value, email.value, password.value);
+  // saveDataToserver(name.value,email.value,password.value);
+  let user = { name: name.value, email: email.value, password: password.value };
+  saveDataToserver(user);
+
   name.value = "";
   email.value = "";
   password.value = "";
-  console.log(passwordErrorElement);
+
+  // console.log(passwordErrorElement);
   passwordErrorElement.remove();
   emailError.remove();
 };
-
+///// form submission **************\\\\\\|||||||||||
 btn.addEventListener("click", handleFormSubmissin);
+
+///// save data to localstorage **************\\\\\\|||||||||||
+function saveDataToserver(data) {
+  localStorage.setItem("user", JSON.stringify(data));
+  loadData();
+}
+
+///// show data btn handled **************\\\\\\|||||||||||
+showData.addEventListener("click", () => {
+  loadData();
+});
+
+///load data from localstorage **************\\\\\\|||||||||||
+let counter = 0;
+function loadData() {
+  counter++;
+  let user = JSON.parse(localStorage.getItem("user"));
+  if (counter === 1) {
+    insertElements(user);
+  } else {
+    if (useItem.lastElementChild.innerText !== `Password : ${user.password}`) {
+      insertElements(user);
+    }
+  }
+}
+
+///insert element in user list **************\\\\\\|||||||||||
+function insertElements(user) {
+  useItem.innerHTML += `<h2> Name : ${user.name}</h2> <h3>Email : ${user.email}</h3> <p>Password : ${user.password}</p>`;
+  window.scrollBy({
+    top: 400,
+    behavior: "smooth",
+  });
+}
