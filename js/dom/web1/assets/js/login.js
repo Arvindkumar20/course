@@ -6,6 +6,7 @@ let passwordErrorElement = document.getElementById("passwordError");
 let showData = document.getElementById("showData");
 let useItem = document.getElementById("user-item");
 
+
 name.addEventListener("input", (e) => {
   nameError.innerText = "";
   nameError.remove();
