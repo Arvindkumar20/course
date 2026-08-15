@@ -1,0 +1,39 @@
+.para {
+  color: red;
+  /* background: green; */
+}
+
+/* login style  */
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 200px auto;
+}
+.login-form {
+  padding: 30px 30px;
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px gray;
+  border: 1px solid gray;
+  display: grid;
+  gap: 15px;
+}
+.form-container .login-form input,
+button {
+  padding: 10px 5px;
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 5px;
+  /* font-size: 1rem; */
+}
+
+.form-container .login-form button {
+  background: rgb(6, 92, 212);
+  cursor: pointer;
+  color: white;
+}
+.error {
+  color: red;
+  font-size: 15px;
+  font-weight: 500;
+}

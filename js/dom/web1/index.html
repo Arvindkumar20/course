@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Manupulation</title>
+
+    <link rel="stylesheet" href="./assets/css/mainstyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Font Awesome 7 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+</head>
+
+<body>
+    <div class="container absolute z-50 hidden  items-center justify-center mx-auto text-blue-700 my-60" id="loader">
+        <div class="animate-spin flex items-center justify-center mx-auto mb-3">
+            <i class="fa-solid fa-spinner fa-spin text-2xl"></i>
+        </div>
+        <span class="text-black"> Please wait Loading...</span>
+    </div>
+    <div class="main">
+        <!-- // -->
+        <!-- <p></p>
+        <p></p>
+        <p></p>
+        <p></p> -->
+    </div>
+    <aside class="absolute w-[250px] flex flex-col  h-screen bg-gray-400   justify-between p-2 " id="aside">
+        <section>
+            <section class="relative  flex items-center  justify-between ">
+                <a class="text-center p-1 cursor-pointer" id="openSidebar">
+                    <i class="fa-solid fa-robot"></i>
+                </a>
+                <div class="flex items-center justify-center gap-2 hide">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <div class="grid cursor-pointer" id="closeSidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+
+                </div>
+
+            </section>
+            <a href="#contact">Cantact</a>
+        </section>
+
+        <div class="relative w-8 h-8 hidden rounded-full bg-blue-500 flex items-center justify-center text-center p-1"
+            id="profile"> <i class="fa-solid fa-user"></i></div>
+
+        <section
+            class="relative hover:bg-gray-600 rounded-md border-1 py-1 px-1 flex items-start  justify-between hide">
+
+            <div class="flex items-center justify-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center "> <i
+                        class="fa-solid fa-user"></i></div>
+                <div class="grid ">
+                    <span class="text-sm font-bold">Name</span>
+                    <span class="text-xs"> free</span>
+                </div>
+
+            </div>
+            <button
+                class="text-xs border-1 bg-gray-700 text-white px-3 w-[80px] text-center flex items-center justify-center hide"
+                id="navigate">Upgrade</button>
+        </section>
+    </aside>
+
+    <section class="h-screen">
+        <img src="https://images.unsplash.com/photo-1520209759809-a9bcb6cb3241?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1nfGVufDB8fDB8fHww"
+            alt="">
+        <img src="https://images.unsplash.com/photo-1520209759809-a9bcb6cb3241?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1nfGVufDB8fDB8fHww"
+            alt="">
+        <img src="https://images.unsplash.com/photo-1520209759809-a9bcb6cb3241?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1nfGVufDB8fDB8fHww"
+            alt="">
+        <img src="https://images.unsplash.com/photo-1520209759809-a9bcb6cb3241?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1nfGVufDB8fDB8fHww"
+            alt="">
+        <img src="https://images.unsplash.com/photo-1520209759809-a9bcb6cb3241?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1nfGVufDB8fDB8fHww"
+            alt="">
+        <img src="https://images.unsplash.com/photo-1520209759809-a9bcb6cb3241?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1nfGVufDB8fDB8fHww"
+            alt="">
+        <img src="https://images.unsplash.com/photo-1520209759809-a9bcb6cb3241?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1nfGVufDB8fDB8fHww"
+            alt="">
+
+
+
+        <section id="contact">
+            <!-- Contact Section -->
+            <section class="py-16">
+                <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+                    <!-- Heading -->
+                    <div class="text-center mb-12">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
+                        <p class="text-gray-600 max-w-2xl mx-auto">
+                            Have a question, project inquiry, or want to collaborate? Send us a message and our team
+                            will get back to you as soon as possible.
+                        </p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-10">
+
+                        <!-- Contact Form -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <h2 class="text-2xl font-semibold mb-6">Send a Message</h2>
+
+                            <form class="space-y-5">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Full Name</label>
+                                    <input type="text" placeholder="John Doe"
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black" />
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Email Address</label>
+                                    <input type="email" placeholder="john@example.com"
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black" />
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Phone Number</label>
+                                    <input type="tel" placeholder="+91 98765 43210"
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black" />
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Subject</label>
+                                    <input type="text" placeholder="Project Discussion"
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black" />
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Message</label>
+                                    <textarea rows="5" placeholder="Write your message here..."
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"></textarea>
+                                </div>
+
+                                <button type="submit"
+                                    class="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="space-y-6">
+
+                            <div class="bg-white rounded-2xl shadow-lg p-6">
+                                <h2 class="text-2xl font-semibold mb-6">Get in Touch</h2>
+                                <p class="text-gray-600 mb-6">
+                                    We’re here to help with your business, technology, and training needs.
+                                    Reach out through any of the contact methods below.
+                                </p>
+
+                                <div class="space-y-5">
+
+                                    <div class="flex items-start gap-4">
+                                        <div
+                                            class="w-12 h-12 bg-black text-white rounded-lg flex items-center justify-center">
+                                            📞
+                                        </div>
+                                        <div>
+                                            <h3 class="font-semibold">Phone</h3>
+                                            <p class="text-gray-600">+91 98765 43210</p>
+                                            <p class="text-gray-600">+91 91234 56789</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-4">
+                                        <div
+                                            class="w-12 h-12 bg-black text-white rounded-lg flex items-center justify-center">
+                                            ✉️
+                                        </div>
+                                        <div>
+                                            <h3 class="font-semibold">Email</h3>
+                                            <p class="text-gray-600">info@yourcompany.com</p>
+                                            <p class="text-gray-600">support@yourcompany.com</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-4">
+                                        <div
+                                            class="w-12 h-12 bg-black text-white rounded-lg flex items-center justify-center">
+                                            📍
+                                        </div>
+                                        <div>
+                                            <h3 class="font-semibold">Office Address</h3>
+                                            <p class="text-gray-600">
+                                                Your Company Name<br />
+                                                Gomti Nagar, Lucknow,<br />
+                                                Uttar Pradesh, India
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-4">
+                                        <div
+                                            class="w-12 h-12 bg-black text-white rounded-lg flex items-center justify-center">
+                                            🕒
+                                        </div>
+                                        <div>
+                                            <h3 class="font-semibold">Business Hours</h3>
+                                            <p class="text-gray-600">Monday - Saturday</p>
+                                            <p class="text-gray-600">9:00 AM - 7:00 PM</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Map Placeholder -->
+                            <div class="bg-white rounded-2xl shadow-lg p-4">
+                                <div
+                                    class="w-full h-64 rounded-xl bg-gray-200 flex items-center justify-center text-gray-500">
+                                    Google Map / Office Location
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </section>
+
+    </section> <!-- <a href="./login.html">go to Login page</a> -->
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/sidbar.js"></script>
+</body>
+
+</html>

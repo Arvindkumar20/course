@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Handling</title>
+</head>
+
+<body>
+
+    <input type="file" id="file" accept="images/*">
+    <br><br>
+    <img id="ac" width="200">
+    <p id="para"></p>
+    <!-- <iframe id="frameView" width="600" src=""> -->
+    <!-- <a href="..." width="200" target="_blank"> -->
+
+    <script>
+        const fileInput = document.getElementById('file');
+        const img = document.getElementById('ac');
+        const para = document.getElementById('para');
+        // const frameView = document.getElementById('frameView');
+
+        // fileInput.addEventListener('change', (e) => {
+        //     const file = e.target.files[0];
+        //     console.log(file);
+
+        //     if (file) {
+        //         const imageURL = URL.createObjectURL(file);
+        //         // frame.src=imageURL;
+        //         console.log(imageURL);
+        //         img.src = imageURL;
+        //         img.alt = file.name;
+        //         // window.location.target="_blank";
+        //         // window.location.href=imageURL;
+
+        //         // Memory cleanup
+        //         img.onload = () => URL.revokeObjectURL(imageURL);
+        //     }
+        // });
+
+        fileInput.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            console.log(file)
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function () {
+                para.innerText = reader.result; // file content
+            };
+            reader.readAsText(file); // text file ke liye
+        });
+
+
+    </script>
+
+</body>
+
+</html>

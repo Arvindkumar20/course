@@ -106,15 +106,16 @@
 // call back hell
 
 // apis
-
 // promise >
 // promise chain
 // async await
 // fetch || axios
 // try {
+
 // } catch (error) {
 // } /// error handling throw, try-catch
 // file handling
+
 // moduleing  import and export
 
 // oops

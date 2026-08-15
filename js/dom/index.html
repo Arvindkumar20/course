@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        .active {
+            color: white;
+            background-color: black;
+            border-radius: 5px;
+            padding: 5px 20px;
+        }
+
+        .image-style {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+        }
+
+        .user-card {
+            padding: 5px;
+            border: 1px solid gray;
+            background-color: white;
+            box-shadow: 0 0 0 10 gray;
+            width: 300px;
+            margin: 10px;
+            border-radius: 20px;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- selectors  -->
+    <!-- by id // document.getElementById() single -->
+    <!-- by class name // document.getElementsByClassName() array-->
+    <!-- by tag name // document.getElementsByTagName() array-->
+    <!-- querySelector  // document.querySelector("p") single -->
+    <!-- by querySelector// document.querySelectorAll("p") array-->
+
+    <button id="btn"></button>
+    <div id="main" class="main">
+
+        <!-- <p class="para">1</p>
+        <p class="para">2</p>
+        <p class="para">3</p>
+        <p class="para">4</p>
+        <p class="para">5</p>
+        <p class="para">6</p> -->
+
+
+    </div>
+
+    <img src="" alt="">
+    <script>
+        const btn = document.getElementById("btn");
+        // btn.innerText = "click"
+
+
+        // div.innerHtml = '<h1>Hello</h1> <p>lorem</p>'
+        // class name
+        // let para=document.getElementsByClassName("para");
+        // console.log(para);
+        // para[0].innerText="dshdkv"
+
+
+
+        // const para = document.getElementsByTagName("p");
+        // para[0].innerText = "hello"
+        // para[0].textContent = "hello"
+        // console.log(para)
+        // console.log(typeof para);
+        // Array.from(para).map(element => {
+        //     element.innerText="fd"
+        //     element.style.color = "red";
+        //     element.style.color = "red";
+        // });
+
+
+        // let p = document.querySelector("p");
+        // p.innerText = "query selector"
+
+        // let para = document.querySelectorAll("p");
+        // console.log(para);
+
+        // Array.from(para).map(e=>{
+        //     e.innerText="jhdgleg"
+        //     e.style.color="red";
+        // });
+
+        // const main = document.getElementById("main");
+        // console.log(parent.childNodes);
+        // console.log(parent.firstElementChild);
+        // console.log(parent.lastElementChild);
+        // console.log(parent.childElementCount);
+        btn.innerText = "Click"
+        // btn.style.color = "white";
+        // btn.style.background = "black";
+        // btn.style.padding = "5px 20px";
+        // btn.style.borderRadius = "5px";
+
+        // btn.classList = "active";
+
+        // btn.style.background = "blue";
+
+        // let img = document.querySelector("img");
+        // img.src = "https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D";
+        // img.alt = "dummy image";
+        // img.classList = "image-style";
+
+
+        const users = [{ name: "arvind", email: "dwlefug@gmail.com", profile: "https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D" }, { name: "raj", email: "raj@gmail.com", profile: "https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D" }]
+
+        let main = document.getElementById("main");
+        let container = document.createElement("div")
+        // let container=document.createElement("p")
+        // let container=document.createElement("button")
+
+
+        users.map((user, index) => {
+            // let userCard = document.createElement("div");
+            // userCard.classList = "user-card";
+            // ///
+            // let name = document.createElement("h2");
+            // name.innerText = user.name;
+
+            // let email = document.createElement("h3");
+            // email.innerText = user.email;
+            // let img = document.createElement("img");
+            // img.src = user.profile;
+            // img.alt = user.name;
+            // img.classList = "image-style"
+            // //
+            // userCard.appendChild(img);
+            // userCard.appendChild(name);
+            // userCard.appendChild(email);
+            // container.appendChild(userCard);
+            container.innerHTML += `<div class="user-card"> 
+                <img src="${user.profile}" class="image-style"/>
+                 <h2>${user.name}</h2> 
+                 <h3>${user.email}</h3>
+                 </div>
+                 `
+        });
+        container.classList = "container";
+        main.appendChild(container);
+    </script>
+</body>
+
+</html>
+
+<!-- html.body; -->

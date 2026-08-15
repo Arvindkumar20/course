@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Font Awesome 7 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+</head>
+
+<body>
+    <h1 class="font-bold text-center mt-10 text-2xl " id="hi">TODO Form</h1>
+    <label for="" class="font-bold mx-3">Text</label>
+    <form action="" id="submit">
+        <input type="text" id="txt" placeholder="Enter your text" class="border-1 rounded w-100 h-10 px-5">
+        <p id="alert"></p>
+        <button id="btn" class="border-2 rounded-md m-4 px-4 bg-amber-500">Submit</button>
+        <ul id="para" class="mx-4 h-auto w-auto scroll">
+        </ul>
+    </form>
+    <script>
+        let v = "";
+        let txt = document.getElementById("txt");
+        let btn = document.getElementById("btn");
+        let para = document.getElementById("para");
+        let alert = document.getElementById("alert");
+        let count = 0;
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (txt.value == "") {
+                console.log("Enter the value");
+                alert.innerText = "This feild is required";
+                return;
+            }
+
+            count++;
+
+            let sessionData = JSON.parse(sessionStorage.getItem("data"));
+            // console.log(sessionData);
+            if (sessionData === null || sessionData === "" || sessionData.length <= 0) {
+                let arr = [txt.value];
+                sessionStorage.setItem("data", JSON.stringify(arr));
+            } else {
+                let arr = [...sessionData, txt.value];
+                sessionStorage.setItem("data", JSON.stringify(arr));
+            }
+
+            // console.log(sessionData);
+
+            // sessionStorage.setItem("data", JSON.stringify(userinput));
+            txt.value = "";
+
+            showData();
+
+        });
+
+        function showData() {
+
+            let sessionData = JSON.parse(sessionStorage.getItem("data"));
+            sessionData?.map((item, index) => {
+                let newLi = document.createElement("li");
+                let userinput = `${index + 1}. ${item}`;
+                newLi.textContent = userinput;
+                para.appendChild(newLi);
+            });
+
+        }
+
+        showData();
+
+        // let submitForm = document.getElementById("submit");
+        // submitForm.addEventListener("submit", (e) => {
+        //     e.preventDefault();
+        //     console.log("form submitted");
+        //     showData()
+        // });
+        
+    </script>
+</body>
+
+</html>
