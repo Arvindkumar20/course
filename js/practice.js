@@ -15,3 +15,5 @@ let newVehicleDlIdList = listData.vehicles.map((vehicle) => {
 
 let newVehicleList = retunOneArray(newVehicleDlIdList, newVehicleNmList);
 console.log(newVehicleList);
+
+
