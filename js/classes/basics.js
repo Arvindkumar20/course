@@ -102,51 +102,143 @@ const s1 = new Student("arvind");
 // constomer2.changeName("Arhan");
 // constomer2.displayCustomerDetails();
 
-class Vehicles {
-  constructor(name, type, fuelType, model, engine) {
+// class Vehicles {
+//   constructor(name, type, fuelType, model, engine) {
+//     this.name = name;
+//     this.type = type;
+//     this.fuelType = fuelType;
+//     this.model = model;
+//     this.engine = engine;
+//   }
+
+//   checkEngine() {
+//     console.log("This vehicle engine is : ", this.engine);
+//   }
+
+//   VehicleType() {
+//     console.log("This vehicle engine is : ", this.type);
+//   }
+//   VehicleFuelType() {
+//     console.log("This vehicle engine is : ", this.fuelType);
+//   }
+//   showVehiclesDetails() {
+//     console.log("This vehicle is : ", this.name, this.type, this.fuelType);
+//   }
+// }
+
+// class Cars extends Vehicles {
+//   carDetails() {
+//     if (this.fuelType === "electric") {
+//       this.name = "Tesla";
+//     }
+//   }
+
+//   createDl() {
+//     console.log("This is Four wheele vehicle and you have need 4 wheeler dl");
+//   }
+
+//   shettingCapacity() {}
+// }
+
+// class Bike extends Vehicles {
+//   shiwDEtails() {
+//     console.log("this is bike ", this.name);
+//   }
+// }
+
+// const car1 = new Cars("Car", "4 Wheeler", "electric", "2026 N", "Tarbo 1");
+// const bike = new Bike("Yamaha", "2 Wheeler", "electric", "2026 N", "Tarbo 1");
+// bike.createDl();
+// bike.showVehiclesDetails();
+
+// inheritance;
+class Animal {
+  constructor(name, sound, food) {
     this.name = name;
-    this.type = type;
-    this.fuelType = fuelType;
-    this.model = model;
-    this.engine = engine;
+    this.sound = sound;
+    this.food = food;
+  }
+  makeSound() {
+    console.log(this.name + "making sound like " + this.sound);
   }
 
-  checkEngine() {
-    console.log("This vehicle engine is : ", this.engine);
+  eatFood() {
+    console.log(this.name + "eat food " + this.food);
   }
-
-  VehicleType() {
-    console.log("This vehicle engine is : ", this.type);
+  hasLegs() {
+    console.log("every animal have 4 legs");
   }
-  VehicleFuelType() {
-    console.log("This vehicle engine is : ", this.fuelType);
-  }
-  showVehiclesDetails() {
-    console.log("This vehicle is : ", this.name, this.type, this.fuelType);
+  displayAnimalDetails() {
+    console.log(
+      this.name + "making sound like " + this.sound,
+      this.name + "eat food " + this.food,
+    );
   }
 }
 
-class Cars extends Vehicles {
-  carDetails() {
-    if (this.fuelType === "electric") {
-      this.name = "Tesla";
-    }
+class Dog extends Animal {
+  // constructor(name, sound, food, pet) {
+  //   super(name, sound, food);
+  //   this.pet = pet;
+  // }
+
+  bodyTemp() {
+    console.log("dog body temprature hiegh");
   }
-
-  createDl() {
-    console.log("This is Four wheele vehicle and you have need 4 wheeler dl");
-  }
-
-  shettingCapacity() {}
-}
-
-class Bike extends Vehicles {
-  shiwDEtails() {
-    console.log("this is bike ", this.name);
+  ispet() {
+    console.log(pet);
   }
 }
 
-const car1 = new Cars("Car", "4 Wheeler", "electric", "2026 N", "Tarbo 1");
-const bike = new Bike("Yamaha", "2 Wheeler", "electric", "2026 N", "Tarbo 1");
-bike.createDl();
-bike.showVehiclesDetails();
+let dog = new Dog("Tommy", "bark", "meet");
+let cat = new Animal("Cat", "miun", "meet");
+// cat.displayAnimalDetails();
+
+// encapsulation;
+class Bank {
+  #balance = 0;
+  #password;
+
+  count = 0;
+  constructor(name, initialBalance, initialpassword) {
+    this.name = name;
+    this.#balance = initialBalance;
+    this.#password = initialpassword;
+  }
+
+  showCustomerData() {
+    console.log(this.name, this.#balance, this.#password);
+  }
+}
+
+const c1 = new Bank("arvind", 4000, "oe78wtlfgd");
+// c1.password = "raj";
+c1.showCustomerData();
+
+// abstraction;
+
+class Bank2 extends Bank {
+  #balance = 0;
+  #password;
+
+  count = 0;
+  constructor(name, initialBalance, initialpassword) {
+    super(name, initialBalance, initialpassword);
+    this.name = name;
+    this.#balance = initialBalance;
+    this.#password = initialpassword;
+  }
+#openAccount(){
+console.log("account opened")
+}
+
+#depositeAmount(){
+  this.#balance=initialBalance;
+}
+
+
+  showCustomerData() {
+    
+  }
+}
+// polymarphism;
