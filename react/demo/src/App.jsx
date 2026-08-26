@@ -4,16 +4,13 @@ import Signup from "./pages/Signup";
 import { Footer } from "./components/layout/Footer";
 import { UserList } from "./pages/UserList";
 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routing } from "./Route";
 export default function App() {
-  let msg="Hello How are";
+  let msg = "Hello How are";
   return (
     <div className="space-y-10">
-      <Navbar />
-      <div className="bg-red-500">
-        <Signup className="bg-green-500" />
-      </div>
-      <UserList/>
-      <Footer message={msg}/>
+      <Routing/>
     </div>
   );
 }

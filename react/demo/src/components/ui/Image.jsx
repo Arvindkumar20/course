@@ -1,15 +1,23 @@
 import defaultImage from "../../assets/hero.png";
 
-export const Image = (props) => {
+export const Image = ({image,alt,className}) => {
   return (
     <>
       <div>
         <img
-          src={props.image || defaultImage}
-          alt={props.alt || "Default image"}
-          className={props.className || "w-full h-full object-contain"}
+          src={image || defaultImage}
+          alt={alt || "Default image"}
+          className={className || "w-full h-full object-contain"}
         />
       </div>
     </>
   );
 };
+
+// export const ProfileImage=()=>{
+//   return <>
+//   <div>
+//     <img src="" alt="" />
+//   </div>
+//   </>
+// }

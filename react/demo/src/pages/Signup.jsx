@@ -116,6 +116,7 @@ function Signup({className}) {
               </button>
             </div>
           </form>
+          
         </div>
       </div>
     </div>
@@ -123,3 +124,9 @@ function Signup({className}) {
 }
 
 export default Signup;
+
+
+// function Hello(){
+//   console.log("object")
+// }
+// export default Hello;
