@@ -8,7 +8,6 @@ import { userData } from "../data/userData.js";
 
 export const UserList = () => {
   const navigate = useNavigate();
-
   const handleOnClick = (id) => {
     navigate(`/user/${id}`);
   };

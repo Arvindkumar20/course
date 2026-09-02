@@ -1,16 +1,41 @@
-import React from "react";
-import { Navbar } from "./components/layout/Navbar";
-import Signup from "./pages/Signup";
-import { Footer } from "./components/layout/Footer";
-import { UserList } from "./pages/UserList";
+import { useState } from "react";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Routing } from "./Route";
+import { ThemeContext } from "./context/ThemeContext";
+import { AuthContext } from "./context/AuthContext";
 export default function App() {
-  let msg = "Hello How are";
+  const [theme, setTheme] = useState("light");
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    role: "",
+    token: "",
+  });
   return (
-    <div className="space-y-10">
-      <Routing/>
+    <div
+      className="space-y-10"
+      style={{
+        background: theme === "light" ? "black" : "white",
+        color: theme === "light" ? "white" : "black",
+      }}
+    >
+      <ThemeContext.Provider
+        value={{
+          theme,
+          setTheme,
+        }}
+      >
+        <AuthContext.Provider
+          value={{
+            user,
+            setUser,
+          }}
+        >
+          <Routing />
+        </AuthContext.Provider>
+
+        {/* <Routing setTheme={setTheme} theme={theme} /> */}
+      </ThemeContext.Provider>
     </div>
   );
 }

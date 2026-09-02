@@ -1,21 +1,28 @@
 import { useParams } from "react-router-dom";
 import { Image } from "../components/ui/Image";
 import { userData } from "../data/userData.js";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ThemeContext } from "../context/ThemeContext.jsx";
 export const User = () => {
+  const { theme, setTheme } = useContext(ThemeContext);
   const { id } = useParams(); //hook
   //   console.log(id);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({}); //local state management
+  //global
+  //context api
+  // redux  || redux toolkit
+  //zustand
 
   useEffect(() => {
     const newUser = userData?.filter(
       (user) => user.id.toString() === id.toString(),
     )[0];
     setUser(newUser);
-  }, []);
-  console.log(user);
+  }, [id]);
+
+  // console.log(user);
   return (
-    <>
+    <div>
       <div className="container mx-auto border shadow-2xl bg-white w-[400px]">
         <Image
           image={user.profileImage}
@@ -34,6 +41,6 @@ export const User = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };

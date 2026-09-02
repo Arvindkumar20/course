@@ -1,13 +1,15 @@
 import { FaRegEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
-function Signup({className}) {
+function Signup({ className }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const { user, setUser } = useContext(AuthContext);
   // const [formData, setFormData] = useState({
   //   name: "",
   //   email: "",
@@ -46,7 +48,13 @@ function Signup({className}) {
     // } catch (error) {
     //   console.log(error)
     // }
-    console.log(name, email, password);
+    setUser({
+      name,
+      email,
+      role: "user",
+      token: "uyed34y7ysdhceogd",
+    });
+    // console.log(name, email, password);
     setName("");
     setEmail("");
     setPassword("");
@@ -61,7 +69,7 @@ function Signup({className}) {
 
   return (
     <div className={className}>
-      <div className=" container mx-auto flex flex-col items-center justify-center h-screen">
+      <div className=" container mx-auto flex flex-col items-center justify-center h-screen text-black">
         <div className="p-10 bg-white shadow-2xl w-[400px] space-y-5">
           <h2 className="text-center font-bold">Welcome back</h2>
           <form className="grid space-y-5" onSubmit={handleFormSubmit}>
@@ -116,7 +124,9 @@ function Signup({className}) {
               </button>
             </div>
           </form>
-          
+            <p className="text-center">
+                     I have already an account <Link to="/login" className="text-blue-500">Login</Link>{" "}
+                   </p>
         </div>
       </div>
     </div>
@@ -124,7 +134,6 @@ function Signup({className}) {
 }
 
 export default Signup;
-
 
 // function Hello(){
 //   console.log("object")
