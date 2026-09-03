@@ -26,7 +26,7 @@ export const UseEffect = ({ user }) => {
     console.log("object");
   },[]);
 
-
+ 
   return (
     <div className="grid">
       {counter && <p>{counter}</p>}

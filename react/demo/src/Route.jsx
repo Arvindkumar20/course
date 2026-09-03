@@ -8,6 +8,8 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Login from "./pages/Login";
 import { UseEffect } from "./pages/UseEffect";
+import { Hooks } from "./pages/Hooks";
+import Memoization from "./pages/Memoization";
 
 export const Routing = () => {
   // export const Routing = ({ theme, setTheme }) => {
@@ -15,7 +17,9 @@ export const Routing = () => {
   return (
     <Router>
       <Navbar />
-      <UseEffect user={user}/>
+      {/* <UseEffect user={user}/> */}
+      {/* <Hooks/> */}
+      <Memoization/>
 
       {/* <Navbar theme={theme} setTheme={setTheme} /> */}
       <Routes>

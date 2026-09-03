@@ -1,0 +1,13 @@
+inbuild hooks given by react
+custome hooks developed by developed developer 
+
+hooks
+state management=>useState,useReducer,useContext;
+effect handling=>useEffect,useLayoutEffect;
+performance=>useMemo for value,useCallback for function,memo for component;
+other=>useRef;
+
+navigation=>useNavigation,useParams,useLocation//react router dom diffrent to react
+
+
+
