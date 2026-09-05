@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import { UseEffect } from "./pages/UseEffect";
 import { Hooks } from "./pages/Hooks";
 import Memoization from "./pages/Memoization";
+import ProductPage from "./pages/ProductPage";
 
 export const Routing = () => {
   // export const Routing = ({ theme, setTheme }) => {
@@ -29,6 +30,8 @@ export const Routing = () => {
         <Route path="/" element={<UserList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<p>Dashboard</p>} />
+        <Route path="/products" element={<ProductPage/>} />
+        
         <Route
           path="/sign-up"
           element={user.token ? <UserList /> : <Signup />}

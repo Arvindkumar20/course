@@ -27,7 +27,7 @@ export const Navbar = () => {
             <li>
               <Link to={"/dashboard"}>Dashboard</Link>
             </li>
-            <li>home</li>
+            <li><Link to={"/products"}>Products</Link></li>
             <li>home</li>
           </ul>
           {!user.token || !user.name || !user.role ? (
