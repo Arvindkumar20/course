@@ -30,3 +30,4 @@ const ProductCard = React.memo(({ product, onAddToCart }) => {
 });
 
 export default ProductCard;
+

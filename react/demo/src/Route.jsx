@@ -11,6 +11,7 @@ import { UseEffect } from "./pages/UseEffect";
 import { Hooks } from "./pages/Hooks";
 import Memoization from "./pages/Memoization";
 import ProductPage from "./pages/ProductPage";
+import UseRefHook from "./pages/UseRefHook";
 
 export const Routing = () => {
   // export const Routing = ({ theme, setTheme }) => {
@@ -20,7 +21,8 @@ export const Routing = () => {
       <Navbar />
       {/* <UseEffect user={user}/> */}
       {/* <Hooks/> */}
-      <Memoization/>
+      {/* <Memoization/> */}
+      <UseRefHook/>
 
       {/* <Navbar theme={theme} setTheme={setTheme} /> */}
       <Routes>

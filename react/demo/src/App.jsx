@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Routing } from "./Route";
 import { ThemeContext } from "./context/ThemeContext";
 import { AuthContext } from "./context/AuthContext";
+import { LoginProvider } from "./context/LoginContext";
 export default function App() {
   const [theme, setTheme] = useState("light");
   const [user, setUser] = useState({
@@ -31,7 +32,9 @@ export default function App() {
             setUser,
           }}
         >
-          <Routing />
+          <LoginProvider>
+            <Routing />
+          </LoginProvider>
         </AuthContext.Provider>
 
         {/* <Routing setTheme={setTheme} theme={theme} /> */}
