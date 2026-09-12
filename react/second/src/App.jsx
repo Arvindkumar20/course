@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Navbar from "./components/layout/Navbar";
-import UserList from "./pages/UserList";
+
+import { AppRoute } from "./AppRoute";
 
 export const App = () => {
   const [theme, setTheme] = useState(true); //true=>light false=>dark
@@ -17,9 +17,7 @@ export const App = () => {
         color: theme ? "white" : "black",
       }}
     >
-      <Navbar theme={theme} handleTheme={handleTheme} />
-
-      <UserList />
+      <AppRoute theme={theme} handleTheme={handleTheme}/>
 
       <div className="h-screen"></div>
     </div>
