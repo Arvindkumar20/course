@@ -2,11 +2,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import UserList from "./pages/UserList";
 import UserPage from "./components/UserPage";
+import PostList from "./pages/PostList";
 
 export const AppRoute = ({ theme, handleTheme }) => {
   return (
     <Router>
       <Navbar theme={theme} handleTheme={handleTheme} />
+      <PostList/>
       <Routes>
         <Route path="/" element={<p>Home</p>} />
         <Route path="/user-list" element={<UserList />} />

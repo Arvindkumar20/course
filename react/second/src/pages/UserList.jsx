@@ -8,6 +8,7 @@ export default function UserList() {
     navigate(`/user/${id}/${name}/${email}`); //navigate to "/user/:id" url
   };
 
+  
   return (
     <div>
       {userData?.map((user) => {

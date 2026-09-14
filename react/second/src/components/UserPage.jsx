@@ -9,6 +9,7 @@ export default function UserPage() {
     () => userData.filter((user) => user.id === Number(id))[0],
     [id],
   );
+
   // console.log(user);
   return (
     <div>
