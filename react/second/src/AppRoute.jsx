@@ -3,11 +3,13 @@ import Navbar from "./components/layout/Navbar";
 import UserList from "./pages/UserList";
 import UserPage from "./components/UserPage";
 import PostList from "./pages/PostList";
+import SignUp from "./pages/SignUp";
 
 export const AppRoute = ({ theme, handleTheme }) => {
   return (
     <Router>
       <Navbar theme={theme} handleTheme={handleTheme} />
+      <SignUp theme={theme}/>
       <PostList/>
       <Routes>
         <Route path="/" element={<p>Home</p>} />
