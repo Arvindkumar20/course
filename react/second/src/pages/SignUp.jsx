@@ -1,8 +1,14 @@
+// import emojiRegex from "emoji-regex";
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { LuLoader } from "react-icons/lu";
 
 export default function SignUp({ theme }) {
+
+  // const emojiOnlyRegex = new RegExp(`^(?:${emojiRegex().source})+$`, "u");
+//   const c1=new Car();
+// c1.model()
+
   const [showPassword, hidePassword] = useState(true);
   const [isSubmiting, setIsSubmiting] = useState(false);
 
@@ -10,14 +16,14 @@ export default function SignUp({ theme }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  
   const handlePasswordVisibility = () => {
     hidePassword(!showPassword);
   };
 
   const handleNameChange = (e) => {
-    setName(e.target.value);
+      setName(e.target.value);
   };
+
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -63,6 +69,7 @@ export default function SignUp({ theme }) {
               className="outline-none border rounded py-2 px-2"
               onChange={handleNameChange}
             />
+            {/* {NameError && <p className="text-red-500">{NameError}</p>} */}
           </div>
 
           <div className="grid grid-cols-1 mx-auto space-y-2 w-full">

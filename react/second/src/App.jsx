@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { AppRoute } from "./AppRoute";
+import UseRef from "./UseRef";
 
 export const App = () => {
   const [theme, setTheme] = useState(true); //true=>light false=>dark
@@ -17,6 +18,7 @@ export const App = () => {
         color: theme ? "white" : "black",
       }}
     >
+      <UseRef/>
       <AppRoute theme={theme} handleTheme={handleTheme}/>
 
       <div className="h-screen"></div>
