@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { taskData } from "../data/taskData.js";
 
-export default function TaskForm({createTask}) {
-  const [task, setTask] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+export default function TaskEditForm({ onEdit, editableTask }) {
+  const [task, setTask] = useState(editableTask?.task );
+  const [title, setTitle] = useState(editableTask?.title );
+  const [description, setDescription] = useState(
+    editableTask?.description ,
+  );
+  console.log(task)
   const [isSubmiting, setSubmiting] = useState(false);
 
   const handleTaskChange = (e) => setTask(e.target.value);
@@ -15,14 +18,13 @@ export default function TaskForm({createTask}) {
     // setSubmiting(true); not use in here
     e.preventDefault();
     setSubmiting(true);
-    
+
     try {
       if (task.trim() == "" || title.trim() == "" || description.trim() == "") {
         alert("all fields are required");
         return;
       }
       createTask({
-       
         task: task.trim(),
         title: title.trim(),
         description: description.trim(),
@@ -40,8 +42,8 @@ export default function TaskForm({createTask}) {
       console.log(error);
     } finally {
       console.log("object");
-        // setSubmiting(false);
-// 
+      // setSubmiting(false);
+      //
     }
   };
   return (

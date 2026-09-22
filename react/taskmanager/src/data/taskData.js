@@ -1,1 +1,1 @@
-export const taskData = [{},];
+export const taskData = [];
