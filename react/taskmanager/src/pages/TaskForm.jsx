@@ -1,35 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { taskData } from "../data/taskData.js";
 
-export default function TaskForm({createTask}) {
+export default function TaskForm({ createTask, editableTask }) {
   const [task, setTask] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [preority, setPreority] = useState("default");
   const [isSubmiting, setSubmiting] = useState(false);
+  const [status, setStatus] = useState("incomplete"); 
+
+  useEffect(() => {
+    setTask(editableTask?.task);
+    setTitle(editableTask?.title);
+    setDescription(editableTask?.description);
+    setPreority(editableTask?.setPreority);
+    setStatus(editableTask?.status);
+  }, [editableTask]);
 
   const handleTaskChange = (e) => setTask(e.target.value);
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
+  const handlePreorityChange = (e) => setPreority(e.target.value);
+  const handleStatusChange = (e) => setStatus(e.target.value);
 
   const handleSubmit = (e) => {
     // setSubmiting(true); not use in here
     e.preventDefault();
     setSubmiting(true);
-    
+
     try {
       if (task.trim() == "" || title.trim() == "" || description.trim() == "") {
         alert("all fields are required");
         return;
       }
+
       createTask({
-       
         task: task.trim(),
         title: title.trim(),
         description: description.trim(),
+        preority: preority,
+        status:status
       });
 
       console.log(taskData);
       console.log(task, title, description);
+
       setTimeout(() => {
         setTask("");
         setTitle("");
@@ -40,8 +55,8 @@ export default function TaskForm({createTask}) {
       console.log(error);
     } finally {
       console.log("object");
-        // setSubmiting(false);
-// 
+      // setSubmiting(false);
+      //
     }
   };
   return (
@@ -88,6 +103,61 @@ export default function TaskForm({createTask}) {
             />
           </div>
 
+          <div className="grid space-y-1 ">
+            <label htmlFor="description">Choose preority</label>
+            <select
+              name="preority"
+              id="preority"
+              onChange={handlePreorityChange}
+              className="outline-none border px-3 py-2 rounded"
+            >
+              <option value="default">Choose your preority</option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+          {editableTask && (
+            <div>
+              {/* <label htmlFor="title">Task Status</label> */}
+              <div className="flex gap-5  ">
+                <label htmlFor="title">Completed</label>
+                <input
+                  type="radio"
+                  name="status"
+                  placeholder="Enter Your task title"
+                  className="outline-none border px-3 py-2 rounded"
+                  onChange={handleStatusChange}
+                  value={"completed"}
+                  required
+                />
+              </div>
+              <div className="flex gap-5  ">
+                <label htmlFor="title">In Completed</label>
+                <input
+                  type="radio"
+                  name="status"
+                  placeholder="Enter Your task title"
+                  className="outline-none border px-3 py-2 rounded"
+                  onChange={handleStatusChange}
+                  value={"in-complete"}
+                  required
+                />
+              </div>
+              <div className="flex gap-5  ">
+                <label htmlFor="title">In Progress</label>
+                <input
+                  type="radio"
+                  name="status"
+                  placeholder="Enter Your task title"
+                  className="outline-none border px-3 py-2 rounded"
+                  onChange={handleStatusChange}
+                  value={"in-progress"}
+                  required
+                />
+              </div>
+            </div>
+          )}
           <div className="w-full flex items-center justify-center">
             <button
               disabled={isSubmiting}
