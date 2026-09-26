@@ -1,5 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   //   const [name, setName] = useState("");
@@ -12,7 +14,13 @@ export default function Login() {
   const [isLoding, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [succseMsg, setSuccessMsg] = useState("");
-
+  const { login, jsession } = useAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (jsession) {
+      navigate("/");
+    }
+  }, [jsession, navigate]);
   const handleChange = (e) => {
     // user["name"]
 
@@ -32,6 +40,11 @@ export default function Login() {
     } catch (error) {
       console.log(error);
       setErrorMsg(error.data.message);
+    } finally {
+      setLoginData({
+        name: "",
+        password: "",
+      });
     }
   };
 
@@ -39,6 +52,7 @@ export default function Login() {
     e.preventDefault();
     setIsLoading(true);
     let result = await handleLogin(loginData);
+
     console.log(result);
     if (
       result.data.message == "Username or password incorrect!" ||
@@ -47,7 +61,13 @@ export default function Login() {
       setErrorMsg(result.data.message);
     } else {
       setCredencials(result.data);
+      login({
+        jsession: result.data.jsession,
+        account_name: result.data.account_name,
+      });
+
       setSuccessMsg("logginde succefully");
+      navigate("/");
     }
     setIsLoading(false);
     setTimeout(() => {
@@ -71,6 +91,7 @@ export default function Login() {
               className="py-2 px-3 outline-none border rounded"
               required
               onChange={handleChange}
+              value={loginData.name}
             />
           </div>
           <div className="grid space-y-2">
@@ -83,6 +104,7 @@ export default function Login() {
               name="password"
               onChange={handleChange}
               required
+              value={loginData.password}
             />
           </div>
           {errorMsg != "" && <p className="text-red-500">{errorMsg}</p>}
