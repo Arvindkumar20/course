@@ -11,7 +11,7 @@ export default function Home() {
   // console.log(jsession);
   //   const [succseMsg, setSuccessMsg] = useState("");
   const [vehiclesData, setVehiclesData] = useState([]);
-  const [camData, setCamData] = useState({ nm: [], did: [] });
+  const [camData, setCamData] = useState({});
   const navigate = useNavigate();
   const handleVehiclesData = async (token) => {
     setIsLoading(true);
@@ -29,9 +29,9 @@ export default function Home() {
       setIsLoading(false);
     }
   };
-
+console.log(jsession);
   useEffect(() => {
-    if (jsession) {
+    if (jsession&&jsession!=null) {
       handleVehiclesData(jsession);
     } else {
       navigate("/login");

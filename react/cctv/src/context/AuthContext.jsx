@@ -9,14 +9,14 @@ export const AuthProvider = ({ children }) => {
 
 
   const login = (data) => {
-    localStorage.setItem("jsession", JSON.stringify(data));
+    sessionStorage.setItem("jsession", JSON.stringify(data));
     console.log(data);
     setJsession(data?.jsession);
     setName(data?.account_name);
   };
 
   useEffect(() => {
-    const authData = JSON.parse(localStorage.getItem("jsession"));
+    const authData = JSON.parse(sessionStorage.getItem("jsession"));
     if (!authData) {
    console.log("object")
     } else {
