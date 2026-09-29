@@ -11,7 +11,9 @@ export default function Home() {
   // console.log(jsession);
   //   const [succseMsg, setSuccessMsg] = useState("");
   const [vehiclesData, setVehiclesData] = useState([]);
+
   const [camData, setCamData] = useState({});
+
   const navigate = useNavigate();
   const handleVehiclesData = async (token) => {
     setIsLoading(true);
@@ -29,9 +31,9 @@ export default function Home() {
       setIsLoading(false);
     }
   };
-console.log(jsession);
+
   useEffect(() => {
-    if (jsession&&jsession!=null) {
+    if (jsession && jsession != null) {
       handleVehiclesData(jsession);
     } else {
       navigate("/login");
@@ -52,6 +54,7 @@ console.log(jsession);
       <ul className="flex items-center justify-between gap-5">
         {vehiclesData?.length > 0 ? (
           vehiclesData?.map((vehicle) => {
+          
             return (
               <li
                 key={vehicle.id}
@@ -59,7 +62,6 @@ console.log(jsession);
               >
                 {vehicle.nm && (
                   <CamDeviceId className="" setCamData={setCamData}>
-                
                     {vehicle.nm}
                   </CamDeviceId>
                 )}

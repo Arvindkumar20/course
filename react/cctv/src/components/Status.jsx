@@ -1,56 +1,16 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
+import { useLOcation } from "../utils/useLocation";
 
-const getLocation = async (coords) => {
-  try {
-    const response = await fetch(
-      `/api/nominatim/reverse?lat=${coords.lat}&lon=${coords.lon}&format=jsonv2&addressdetails=1`,
-    );
 
-    if (!response.ok) {
-      throw new Error(`Location API error: ${response.status}`);
-    }
 
-    const data = await response.json();
-
-    const address = data.address || {};
-
-    return {
-      latitude: Number(data.lat),
-      longitude: Number(data.lon),
-
-      houseNumber: address.house_number || null,
-      street: address.road || null,
-
-      area:
-        address.neighbourhood ||
-        address.suburb ||
-        address.city_district ||
-        null,
-
-      city: address.city || address.town || address.village || null,
-
-      district: address.county || null,
-      state: address.state || null,
-      pincode: address.postcode || null,
-      country: address.country || null,
-
-      fullAddress: data.display_name,
-
-      googleMapsUrl: `https://www.google.com/maps?q=${data.lat},${data.lon}`,
-    };
-  } catch (error) {
-    console.error("Location error:", error);
-    return null;
-  }
-};
-
-export default function Status({ children }) {
+ function Status({ children, setCamData }) {
   const { jsession } = useAuth();
-  console.log(children);
+  const {fullAddress:addr,getLocation}=useLOcation();
+  // console.log(children);
   const [online, setOnline] = useState(0);
-  const [address, setAddress] = useState({});
+  const [address, setAddress] = useState(addr);
   const [quards, setQuards] = useState({
     lat: "",
     lng: "",
@@ -70,20 +30,32 @@ export default function Status({ children }) {
         lat: res2.data.status[0].mlat,
         lng: res2.data.status[0].mlng,
       });
-      const addr = await getLocation({
+     await getLocation({
         lat: res2.data.status[0].mlat,
         lon: res2.data.status[0].mlng,
       });
-      setAddress(addr);
+      setCamData((pre) => {
+        return {
+          ...pre,
+          address: addr,
+          status: res1.data.onlines[0].online,
+        };
+      });
     } catch (error) {
       console.log(error);
     }
   }, []);
 
   useEffect(() => {
+    setAddress(addr);
+    setCamData((pre) => {
+      return { ...pre, did: children };
+    });
+  },[addr, children, setCamData]);
+  useEffect(() => {
     loadCamStatus(jsession, children);
   }, [children, jsession, loadCamStatus]);
-  console.log(address);
+  // console.log(address);
   return (
     <>
       <div>{online == 1 ? "Online" : "Offline"}</div>
@@ -96,3 +68,5 @@ export default function Status({ children }) {
     </>
   );
 }
+
+export default memo(Status);

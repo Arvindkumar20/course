@@ -3,14 +3,16 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
+
+
 export const AuthProvider = ({ children }) => {
+  
   const [jsession, setJsession] = useState("");
   const [name, setName] = useState("");
 
-
   const login = (data) => {
     sessionStorage.setItem("jsession", JSON.stringify(data));
-    console.log(data);
+    // console.log(data);
     setJsession(data?.jsession);
     setName(data?.account_name);
   };
@@ -37,3 +39,4 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
   return useContext(AuthContext);
 };
+

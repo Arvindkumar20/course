@@ -2,11 +2,16 @@ import axios from "axios";
 import React, { Children, memo, useCallback, useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import Status from "./Status";
+import { Link, useNavigate } from "react-router-dom";
 
-function CamDeviceId({ children, className, setCamData }) {
+function CamDeviceId({ children, className }) {
   const { jsession } = useAuth();
+  const navigate=useNavigate();
   // console.log(children);
   const [deviceIds, setDeviceIds] = useState([]);
+  const [CamData, setCamdata] = useState({
+    vId: children,
+  });
   const loadCamDeviceIds = useCallback(async (jsession, children) => {
     try {
       const res = await axios.get(
@@ -33,10 +38,13 @@ function CamDeviceId({ children, className, setCamData }) {
           //       return { ...pre,did: [...pre.did,deviceId.did] };
           //     });
           return (
-            <>
+            // <Link to={`/camera-details/${children}/${deviceId.did}`}>
+            <div className="cursor-pointer" onClick={()=>navigate("/camera-details",{state:CamData})}>
               <p className="text-xl font-bold">{deviceId.did}</p>
-              <Status>{deviceId.did}</Status>
-            </>
+              <Status setCamData={setCamdata}>{deviceId.did}</Status>
+            </div>
+              
+            // </Link>
           );
         })}
     </div>
