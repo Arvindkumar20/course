@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 
 const preorityBasedClasses = {
   high: "border border-red-500 bg-red-100",
