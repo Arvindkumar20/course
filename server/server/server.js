@@ -2,6 +2,9 @@ import express from "express";
 import "dotenv/config";
 import { connectBD } from "./config/connectDB.js";
 import { User } from "./models/user.model.js";
+import { login, register, updateUser } from "./controllers/auth.controller.js";
+import { authenticate } from "./middleware/auth.middleware.js";
+import { createTask, deleteTask, getAlltaskbyOwner } from "./controllers/task.controller.js";
 const app = express();
 const PORT = process.env.PORT;
 app.use(express.json());
@@ -18,7 +21,7 @@ app.get("/health", (req, res) => {
   });
 });
 
-app.get("/api/users", async (req, res) => {
+app.get("/api/users", authenticate, async (req, res) => {
   try {
     const users = await User.find();
     if (users.length <= 0) {
@@ -39,94 +42,32 @@ app.get("/api/users", async (req, res) => {
     });
   }
 });
-//this api is to register or sign up
-app.post("/api/auth/sign-up", async (req, res) => {
+
+app.get("/api/user", authenticate, async (req, res) => {
+  const userId = req.userId;
   try {
-    const { name, email, password } = req.body;
-    if (name == "" || email == "" || password == "") {
-      return res.status(400).json({
-        message: "all fileds are required",
-      });
-    }
-
-    if (!email.includes("@")) {
-      return res.status(422).json({
-        message: "please enter valid email",
-      });
-    }
-
-    if (password.length < 8) {
-      return res.status(422).json({
-        message: "enter atleats 8 charactors in password",
-      });
-    }
-
-    const user = await User.create({
-      name,
-      email,
-      password,
-    });
-
-    if (!user) {
-      return res.status(500).json({
-        message: "users account not created",
-      });
-    }
-
-    return res.json({
-      message: "user account created successfully",
-      user,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      message: "users account not created",
-      error,
-    });
-  }
-});
-
-app.post("/api/auth/login", async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    if (!email.includes("@")) {
-      return res.status(422).json({
-        message: "please enter valid email",
-      });
-    }
-
-    if (password.length < 8) {
-      return res.status(422).json({
-        message: "enter atleats 8 charactors in password",
-      });
-    }
-
-    const user = await User.findOne({
-      email,
-    });
-console.log(user)
+    const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({
-        message: "user not exist with this email",
-        email,
-      });
-    }
-    if (user.password != password) {
-      return res.status(400).json({
-        message: "incorrect password please enter correct password",
+        message: "user data not found",
       });
     }
 
     return res.json({
-      message: "user loggined successfully",
+      message: "users data fetched successfully",
       user,
     });
   } catch (error) {
     return res.status(500).json({
-      message: "user not veryfied",
+      message: "users data not found",
       error,
     });
   }
 });
+//this api is to register or sign up
+app.post("/api/auth/sign-up", register);
+app.post("/api/auth/login", login);
+app.put("/api/auth/update-user", authenticate, updateUser);
 app.delete("/api/delete-user/:userId", async (req, res) => {
   const { userId } = req.params;
   try {
@@ -148,6 +89,12 @@ app.delete("/api/delete-user/:userId", async (req, res) => {
     });
   }
 });
+
+// task apis
+
+app.post("/api/task", authenticate, createTask);
+app.delete("/api/task/:taskId", authenticate, deleteTask);
+app.get("/api/task/", authenticate, getAlltaskbyOwner);
 
 app.listen(PORT, () => {
   console.log("server is running on ", `http://localhost:${PORT}`);
