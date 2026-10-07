@@ -13,7 +13,7 @@ const generate = async (payload) => {
     return token;
   } catch (error) {
     console.log(error);
-    throw new Error({ message: "token not genrated", error });
+    throw new Error({ message: "token not genrated", error: error.message });
   }
 };
 
@@ -63,7 +63,7 @@ export const register = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       message: "users account not created",
-      error,
+      error: error.message,
     });
   }
 };
@@ -113,7 +113,7 @@ export const login = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       message: "user not veryfied",
-      error,
+      error: error.message,
     });
   }
 };
@@ -150,7 +150,71 @@ export const updateUser = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       message: "user not updated",
-      error,
+      error: error.message,
+    });
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const user = await User.findByIdAndDelete(userId);
+    if (!user) {
+      return res.status(404).json({
+        message: "user data not found",
+      });
+    }
+
+    return res.json({
+      message: "user deleted successfully",
+      user,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "user  not deleted",
+      error: error.message,
+    });
+  }
+};
+
+export const getUser = async (req, res) => {
+  const userId = req.userId;
+  try {
+    const user = await User.findById(userId).lean();
+    if (!user) {
+      return res.status(404).json({
+        message: "user data not found",
+      });
+    }
+    // console.log({...user});
+    return res.json({
+      message: "users data fetched successfully",
+      user,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "users data not found",
+      error: error.message,
+    });
+  }
+};
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().lean();
+    if (users.length <= 0) {
+      return res.status(404).json({
+        message: "users data not found",
+      });
+    }
+    return res.json({
+      message: "users data fetched successfully",
+      users,
+      totalUsers: users.length,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "users data not found",
+      error: error.message,
     });
   }
 };
