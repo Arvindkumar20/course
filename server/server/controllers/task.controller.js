@@ -46,6 +46,7 @@ export const getAlltaskbyOwner = async (req, res) => {
     return res.status(200).json({
       message: "tasks fetched successfully",
       tasks,
+      status: 200,
     });
   } catch (error) {
     return res.status(500).json({
@@ -66,6 +67,7 @@ export const deleteTask = async (req, res) => {
     }
     return res.json({
       message: "task deleted successfully",
+      status: 200,
     });
   } catch (error) {
     console.log(error);
@@ -73,6 +75,7 @@ export const deleteTask = async (req, res) => {
     return res.status(500).json({
       message: "task not deleted",
       error: error.message,
+      status:500
     });
   }
 };
