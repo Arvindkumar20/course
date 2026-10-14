@@ -1,34 +1,10 @@
-import { useState } from "react";
+import React from "react";
+import { AppRoute } from "./routes/AppRoute";
 
-import { useEffect } from "react";
-
-function App() {
-  const [users, setUsers] = useState([]);
-
-  const loadUserData = async () => {
-    const res = await fetch("http://localhost:5000/api/users");
-    const result = await res.json();
-    console.log(result.users);
-    setUsers(result.users);
-  };
-
-  useEffect(() => {
-    loadUserData();
-  }, []);
-
+export default function App() {
   return (
-    <>
-      {users?.map((user) => {
-        return (
-          <div key={user._id}>
-            <h1>{user._id}</h1>
-            <h1>{user.name}</h1>
-            <h1>{user.email}</h1>
-          </div>
-        );
-      })}
-    </>
+    <div>
+      <AppRoute />
+    </div>
   );
 }
-
-export default App;
