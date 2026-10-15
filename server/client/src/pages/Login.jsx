@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { loginAPI } from "../services/api/auth.api-service";
 
 export const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -11,11 +12,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const loginUser = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        loginData,
-      );
-
+      const res = await loginAPI(loginData);
       if (res.data.status == 200) {
         localStorage.setItem(
           "userData",
@@ -27,7 +24,6 @@ export const Login = () => {
         );
         navigate("/");
       }
-      console.log(res.data);
     } catch (error) {
       console.log(error.response.data);
       setErrorMsg(error.response.data.message);
@@ -38,7 +34,6 @@ export const Login = () => {
     e.preventDefault();
     setErrorMsg("");
     loginUser();
-    console.log(loginData);
   };
 
   return (
@@ -75,6 +70,9 @@ export const Login = () => {
           Login
         </button>
       </form>
+      <p>
+        I don't have an account <Link to={"/register"}>Sign Up</Link>
+      </p>
     </>
   );
 };

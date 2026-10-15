@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [users, setUsers] = useState([]);
-  const [user, setUser] = useState({});
+
   const navigate = useNavigate();
 
   //   useEffect(() => {
@@ -16,7 +16,7 @@ export default function Home() {
     if (!userData || userData == null) {
       navigate("/login");
     }
-    setUser(userData);
+
     try {
       //   const res = await fetch("http://localhost:5000/api/auth/users");
       //   const result = await res.json();
@@ -48,28 +48,8 @@ export default function Home() {
         );
       })}
 
-      <button
-        onClick={() =>
-          navigate("/tasks", {
-            state: {
-              user,
-            },
-          })
-        }
-      >
-        Task List
-      </button>
-      <button
-        onClick={() =>
-          navigate("/task/create", {
-            state: {
-              user,
-            },
-          })
-        }
-      >
-        Add Task
-      </button>
+      <button onClick={() => navigate("/tasks")}>Task List</button>
+      <button onClick={() => navigate("/task/create")}>Add Task</button>
     </>
   );
 }

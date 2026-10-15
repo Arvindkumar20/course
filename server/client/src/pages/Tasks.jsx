@@ -3,9 +3,14 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import {
+  deleteTaskAPI,
+  loadAllTaskAPI,
+  updateTaskAPI,
+} from "../services/api/task.api-service";
 
 export default function Tasks() {
-  const location = useLocation();
+  // const location = useLocation();
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState({
     title: "",
@@ -14,15 +19,17 @@ export default function Tasks() {
   const [isEditable, setIsEditable] = useState(false);
   const [taskId, setTaskId] = useState("");
   const navigate = useNavigate();
-  console.log(location);
+  // console.log(location);
 
   const loadTasks = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/task", {
-        headers: {
-          Authorization: `Bearer ${location.state.user.token}`,
-        },
-      });
+      // const res = await axios.get("http://localhost:5000/api/task", {
+      //   headers: {
+      //     Authorization: `Bearer ${location.state.user.token}`,
+      //   },
+      // });
+
+      const res = await loadAllTaskAPI();
       console.log(res.data);
       if (res.data.status == 200) {
         setTasks(res.data.tasks);
@@ -38,12 +45,12 @@ export default function Tasks() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:5000/api/task/${id}`, {
-        headers: {
-          Authorization: `Bearer ${location.state.user.token}`,
-        },
-      });
-
+      // const res = await axios.delete(`http://localhost:5000/api/task/${id}`, {
+      //   headers: {
+      //     Authorization: `Bearer ${location.state.user.token}`,
+      //   },
+      // });
+      const res = await deleteTaskAPI(id);
       if (res.data.status == 200) {
         alert("task deleted successfully");
         loadTasks();
@@ -67,15 +74,17 @@ export default function Tasks() {
 
   const saveData = async (data) => {
     try {
-      const res = await axios.put(
-        `http://localhost:5000/api/task/${taskId}`,
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${location.state.user.token}`,
-          },
-        },
-      );
+      // const res = await axios.put(
+      //   `http://localhost:5000/api/task/${taskId}`,
+      //   data,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${location.state.user.token}`,
+      //     },
+      //   },
+      // );
+
+      const res = await updateTaskAPI(data, taskId);
       if (res.data.status != 200) {
         alert("your task not updated");
         return null;

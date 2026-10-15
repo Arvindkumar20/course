@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createTaskAPI } from "../services/api/task.api-service";
 
 export default function CreateTask() {
   const [task, setTask] = useState({
@@ -16,13 +17,14 @@ export default function CreateTask() {
   }, []);
 
   const saveData = async (data) => {
-    const authData = JSON.parse(localStorage.getItem("userData"));
+    // const authData = JSON.parse(localStorage.getItem("userData"));
     try {
-      const res = await axios.post("http://localhost:5000/api/task", data, {
-        headers: {
-          Authorization: `Bearer ${authData.token}`,
-        },
-      });
+      // const res = await axios.post("http://localhost:5000/api/task", data, {
+      //   headers: {
+      //     Authorization: `Bearer ${authData.token}`,
+      //   },
+      // });
+      const res = await createTaskAPI(data);
       if (res.data.status != 201) {
         alert("your task not added");
         return null;
