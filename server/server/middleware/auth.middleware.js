@@ -29,6 +29,7 @@ export const authenticate = async (req, res, next) => {
     }
     req.userId = decoded.userId;
     next();
+    
   } catch (error) {
     console.log(error);
     throw new Error({

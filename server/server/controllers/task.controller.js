@@ -23,6 +23,7 @@ export const createTask = async (req, res) => {
     return res.status(201).json({
       message: "your task added successfully",
       task,
+      status: 201,
     });
   } catch (error) {
     return res.status(500).json({
@@ -36,7 +37,7 @@ export const getAlltaskbyOwner = async (req, res) => {
   const userId = req.userId;
 
   try {
-    const tasks = await Task.find({ owner: userId }).lean();
+    const tasks = (await Task.find({ owner: userId }).lean()).reverse();
     if (tasks.length <= 0) {
       return res.status(404).json({
         message: "tasks not found",
@@ -75,7 +76,7 @@ export const deleteTask = async (req, res) => {
     return res.status(500).json({
       message: "task not deleted",
       error: error.message,
-      status:500
+      status: 500,
     });
   }
 };
@@ -83,6 +84,9 @@ export const deleteTask = async (req, res) => {
 export const updateTask = async (req, res) => {
   const { taskId } = req.params;
   const userId = req.userId;
+  // if(req.role=="user"){
+  //  return ;
+  // }
   const { title, description } = req.body;
   if (!title) {
     return res.status(400).json({
@@ -113,6 +117,7 @@ export const updateTask = async (req, res) => {
     return res.status(200).json({
       message: "task updated successfully",
       task,
+      status: 200,
     });
   } catch (error) {
     console.log(error);

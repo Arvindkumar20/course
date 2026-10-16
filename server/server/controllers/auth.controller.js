@@ -38,6 +38,14 @@ export const register = async (req, res) => {
       });
     }
 
+    const userExist = await User.findOne({ email: email });
+    if (userExist) {
+      return res.status(409).json({
+        message: "User aleady exist with this email try with other email",
+        status: 409,
+      });
+    }
+
     const user = await User.create({
       name,
       email,
@@ -59,6 +67,7 @@ export const register = async (req, res) => {
     return res.status(201).json({
       message: "user account created successfully",
       user: { ...user._doc, token },
+      status: 201,
     });
   } catch (error) {
     return res.status(500).json({
@@ -108,8 +117,8 @@ export const login = async (req, res) => {
     }
     return res.status(200).json({
       message: "user loggined successfully",
-      user: { ...user._doc, token,},
-       status: 200 
+      user: { ...user._doc, token },
+      status: 200,
     });
   } catch (error) {
     return res.status(500).json({

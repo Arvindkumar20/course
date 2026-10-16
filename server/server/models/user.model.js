@@ -17,6 +17,9 @@ const userSchema = new mongoose.Schema(
       maxLength: [8, `password must be 8 charators`],
       select: false,
     },
+    role:{
+      enum:["user","admin","super-admin"],
+    }
   },
   {
     timestamps: true,
