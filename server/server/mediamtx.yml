@@ -1,7 +1,26 @@
+
+logLevel: info
+
+api: yes
+apiAddress: 127.0.0.1:9997
+
+rtsp: yes
+rtspAddress: :8554
+
+hls: yes
+hlsAddress: :8888
+hlsAllowOrigins: ["*"]
+hlsVariant: mpegts
+
+webrtc: yes
+webrtcAddress: :8889
+
+
+
+pathDefaults:
+  # sourceOnDemand: yes
+  sourceOnDemandStartTimeout: 15s
+  sourceOnDemandCloseAfter: 10s
+
 paths:
-  dvr-camera1:
-    source: "http://chinamdvr.com:6604/hls/1_018270792151_2_1.m3u8?jsession=7b334d99c48f4788b9c233fc4af02766"
-    sourceOnDemand: yes
-  dvr-camera2:
-    source: "http://chinamdvr.com:6604/hls/1_018270792151_2_1.m3u8?jsession=7b334d99c48f4788b9c233fc4af02766"
-    sourceOnDemand: yes
+  all_others:
