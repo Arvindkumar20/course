@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HLS Stream Player</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+  <h2>HLS Video Player</h2>
+
+  <video
+    id="video"
+    controls
+    autoplay
+    muted
+    playsinline
+    width="800"
+    style="max-width: 100%; background: black;"
+  ></video>
+
+  <p id="status">Loading stream...</p>
+
+  <script>
+    const video = document.getElementById("video");
+    const status = document.getElementById("status");
+
+    const streamUrl =
+      "http://chinamdvr.com:6604/hls/1_018270792151_2_1.m3u8?jsession=7b334d99c48f4788b9c233fc4af02766";
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(streamUrl);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        status.textContent = "Stream loaded. Press Play if needed.";
+        video.play().catch(() => {
+          status.textContent = "Stream loaded. Click Play to start.";
+        });
+      });
+
+      hls.on(Hls.Events.ERROR, (event, data) => {
+        if (data.fatal) {
+          status.textContent =
+            "Playback error: " + data.type + " — " + data.details;
+          console.error("HLS error:", data);
+        }
+      });
+
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = streamUrl;
+      status.textContent = "Using native HLS playback.";
+    } else {
+      status.textContent = "HLS playback is not supported in this browser.";
+    }
+  </script>
+</body>
+</html>

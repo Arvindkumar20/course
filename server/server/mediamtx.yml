@@ -1,5 +1,34 @@
 
-logLevel: info
+# logLevel: debug
+
+# api: yes
+# apiAddress: 127.0.0.1:9997
+
+# rtsp: yes
+# rtspAddress: :8554
+
+# hls: yes
+# hlsAddress: :8888
+# hlsAllowOrigins: ["*"]
+# hlsVariant: mpegts
+# # logLevel: debug
+# hlsAlwaysRemux: yes
+
+# webrtc: yes
+# webrtcAddress: :8889
+
+
+
+# pathDefaults:
+#   # sourceOnDemand: yes
+#   sourceOnDemandStartTimeout: 15s
+#   sourceOnDemandCloseAfter: 10s
+
+# paths:
+#   all_others:
+
+
+logLevel: debug
 
 api: yes
 apiAddress: 127.0.0.1:9997
@@ -11,14 +40,12 @@ hls: yes
 hlsAddress: :8888
 hlsAllowOrigins: ["*"]
 hlsVariant: mpegts
+hlsAlwaysRemux: yes
 
 webrtc: yes
 webrtcAddress: :8889
 
-
-
 pathDefaults:
-  # sourceOnDemand: yes
   sourceOnDemandStartTimeout: 15s
   sourceOnDemandCloseAfter: 10s
 

@@ -10,6 +10,7 @@ import express from "express";
 
 import mongoose from "mongoose";
 import crypto from "crypto";
+import { addCameraToMediaMtx, addDynamicCamera } from "./utils/mediamtxAPI.js";
 const router = express.Router();
 const ADMIN_KEY = process.env.CAMERA_ADMIN_API_KEY;
 const PUBLIC_HOST = process.env.MEDIAMTX_PUBLIC_HOST || "127.0.0.1";
@@ -95,8 +96,8 @@ function publicCamera(camera) {
     enabled: camera.enabled,
     createdAt: camera.createdAt,
     rtspUrl: `rtsp://${PUBLIC_HOST}:8554/${camera.streamPath}`,
-    hlsUrl: `${HLS_PROTOCOL}://${PUBLIC_HOST}:8888/${camera.streamPath}/index.m3u8`,
-    webrtcUrl: `${HLS_PROTOCOL}://${PUBLIC_HOST}:8889/${camera.streamPath}`,
+    hlsUrl: `${HLS_PROTOCOL}://${PUBLIC_HOST}:8888/${camera._id}/index.m3u8`,
+    webrtcUrl: `${HLS_PROTOCOL}://${PUBLIC_HOST}:8889/${camera._id}`,
   };
 }
 
@@ -236,27 +237,44 @@ router.post("", async (req, res, next) => {
       sourceUrl,
       enabled: true,
     });
+    let url = new URL(req.body.sourceUrl);
+    console.log(req.body.sourceUrl);
+    console.log(url);
+    const result = await addDynamicCamera({
+      cameraId: camera._id,
+      rtspUrl: url.toString(),
+    });
 
-    try {
-      await addMediaMTXPath(camera.streamPath, sourceUrl);
-    } catch (error) {
-      // Roll back the database record if MediaMTX rejects the path.
-      await Camera.findByIdAndDelete(camera._id);
-
-      console.error("Failed to configure MediaMTX:", error.message);
-
-      return res.status(502).json({
-        error: "Could not configure this camera in MediaMTX.",
-      });
-    }
-
-    return res.status(201).json(publicCamera(camera));
-
-    return res.status(201).json(publicCamera(camera));
+    console.log(result);
+    ((camera.hlsUrl = `http://localhost:8888/${camera._id}/index.m3u8`),
+      await camera.save());
+    res.status(201).json({
+      success: true,
+      message: "Camera configured in MediaMTX",
+      stream: {
+        camera,
+        webrtcUrl: `http://localhost:8889/${camera._id}`,
+        hlsUrl: `http://localhost:8888/${camera._id}/index.m3u8`,
+      },
+      mediaMtx: result,
+    });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });
+export async function listStreams(req, res, next) {
+  try {
+    const result = await getMediaMtxPaths();
+
+    res.json({
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
 
 // List cameras without revealing original RTSP credentials
 router.get("", async (req, res, next) => {
@@ -306,8 +324,9 @@ router.patch("/:cameraId/enabled", async (req, res, next) => {
       });
     }
 
-    const camera = await Camera.findById(req.params.cameraId)
-      .select("+sourceUrl");
+    const camera = await Camera.findById(req.params.cameraId).select(
+      "+sourceUrl",
+    );
 
     if (!camera) {
       return res.status(404).json({ error: "Camera not found" });
