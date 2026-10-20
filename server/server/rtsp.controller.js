@@ -238,10 +238,10 @@ router.post("", async (req, res, next) => {
       enabled: true,
     });
     let url = new URL(req.body.sourceUrl);
-    console.log(req.body.sourceUrl);
-    console.log(url);
+    // console.log(req.body.sourceUrl);
+    // console.log(url);
     const result = await addDynamicCamera({
-      cameraId: camera._id,
+      cameraId: camera._id.toString(),
       rtspUrl: url.toString(),
     });
 

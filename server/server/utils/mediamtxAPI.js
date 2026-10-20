@@ -44,26 +44,26 @@ export async function addCameraToMediaMtx({ cameraId, rtspUrl }) {
   );
 }
 
-
-
-export async function addDynamicCamera(cameraId, rtspUrl) {
+export async function addDynamicCamera(camDetails) {
+  // console.log(cameraId);
+  const { cameraId, rtspUrl } = camDetails;
   // Camera path ko safe rakho
-  // if (!/^[a-zA-Z0-9_-]+$/.test(cameraId)) {
-  //   throw new Error("Invalid camera ID");
-  // }
+  if (!/^[a-z0-9]+$/.test(cameraId)) {
+    throw new Error("Invalid camera ID");
+  }
 
   // Different domains aur IP addresses allow hain
   let parsedUrl;
 
-  // try {
-  //   parsedUrl = new URL(rtspUrl);
-  // } catch {
-  //   throw new Error("Invalid RTSP URL");
-  // }
+  try {
+    parsedUrl = new URL(rtspUrl);
+  } catch {
+    throw new Error("Invalid RTSP URL");
+  }
 
-  // if (!["rtsp:", "rtsps:"].includes(parsedUrl.protocol)) {
-  //   throw new Error("Only RTSP/RTSPS URLs are allowed");
-  // }
+  if (!["rtsp:", "rtsps:"].includes(parsedUrl.protocol)) {
+    throw new Error("Only RTSP/RTSPS URLs are allowed");
+  }
 
   const response = await fetch(
     `${MEDIAMTX_API}/v3/config/paths/add/${encodeURIComponent(cameraId)}`,
@@ -90,4 +90,3 @@ export async function addDynamicCamera(cameraId, rtspUrl) {
     configured: true,
   };
 }
-
